@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prenotazioni sala cinema</title>
+    <link href="css.css" rel="stylesheet" type="text/css"> 
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Numero di File:</h1>
+        <input type="number" id="fila">
+        <h1>Numero poltrone per fila:</h1>
+        <input type="number" id="poltronePerFila">
+        <br><br>
+        <button onclick="poltrone()">Premi per visualizzare le poltrone</button>
+        <br><br>
+        <div id="cinema"></div>
+        <h1>Guadagno totale: <span id="guadagno">0</span>€</h1>
+    </div>
+
+    <script>
+        function poltrone(){
+            var file = document.getElementById('fila').value;
+            var postiPerFila = document.getElementById('poltronePerFila').value;
+            var cinema = "";
+            
+            for(var i = 0; i < file; i++){
+                for(var j = 0; j < postiPerFila; j++){
+                    cinema += '<div class = "poltrona" onclick = "calcoloGuadagno(this)"> Fila: ' + (i + 1) + ' <br> Posto: ' + (j + 1)  + '</div>';
+                }
+                cinema += '<br>'; //per creare una nuova fila
+            }
+            document.getElementById('cinema').innerHTML = cinema; //per stampare tutte le file
+        }
+
+        function calcoloGuadagno(poltrona){
+            var guadagno = parseInt(document.getElementById('guadagno').textContent);
+            if(poltrona.classList.contains('riservata')){ //se la poltrona è già riservata la cambiamo a non-riservata
+                poltrona.classList.remove('riservata');
+                guadagno -= 8;
+            }
+            else{
+                poltrona.classList.add('riservata'); //se la poltrona non è riservata la cambiamo a riservata
+                guadagno += 8;
+            }
+            document.getElementById('guadagno').textContent = guadagno;
+        }
+    </script>
+</body>
+</html>
