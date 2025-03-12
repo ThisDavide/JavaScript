@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color:rgb(0, 0, 0);
+    overflow: hidden; /*rimuove la barra di scorrimento laterale*/
+}
+#buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+} 
+button {
+    background-color:grey;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+}
+#image{
+    width: 800px;
+    height: 500px;
+}
