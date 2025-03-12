@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+  <head>
+    <link rel="stylesheet" href="index.css">
+    <title>Grafico cartesiano</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', { packages: ['corechart', 'line'] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function creaGrafico() {
+        var a = parseFloat(document.getElementById("a").value);
+        var b = parseFloat(document.getElementById("b").value);
+        var c = parseFloat(document.getElementById("c").value);
+        var scelta = document.getElementById("scelta").value;
+
+        var grafico = new google.visualization.DataTable(); //crea tabella di dati per il grafico
+        grafico.addColumn('number'); //aggiungo 2 colonne con valori numerici alla tabella, una per le x e una per le y 
+        grafico.addColumn('number'); 
+
+        for (var x = -5; x <= 5; x += 0.1) {
+          var y = 0;
+          if (scelta == "retta") {
+            y = a * x + b;
+          } else if (scelta == "parabola") {
+            y = a * x * x + b * x + c; //ax^2 + bx + c = 0
+          }
+          grafico.addRow([x, y]);
+        }
+
+        var assi = {
+        hAxis: {
+            title: 'X',
+            viewWindow: {
+                min: -10,
+                max: 10
+            }
+        },
+        vAxis: {
+            title: 'Y',
+            viewWindow: {
+                min: -100,
+                max: 100
+            }
+        },
+        legend: { position: 'none' }, //Nascondi la legenda
+        lineWidth: 2, //Spessore della linea
+    };
+
+        var chart = new google.visualization.LineChart(document.getElementById('grafico')); //disegna il grafico a linee
+        chart.draw(grafico, assi);
+      }
+    </script>
+  </head>
+  <body onload="creaGrafico()">
+    <h1>Grafico cartesiano</h1>
+    <div>
+      <label for="a">a:</label>
+      <input type="number" id="a" value="0">
+      <label for="b">b:</label>
+      <input type="number" id="b" value="0">
+      <label for="c">c:</label>
+      <input type="number" id="c" value="0">
+    </div>
+    <br><br>
+    <div>
+      <select name="scelta" id="scelta">
+        <option value="retta">Retta</option>
+        <option value="parabola">Parabola</option>
+      </select>
+    </div>
+    <br>
+    <button onclick="creaGrafico()">Mostra</button>
+    <div id="grafico"></div>
+  </body>
+</html>
