@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+    </head>
+    <body onload="sceltaParola()">
+        <div id="wrapper">
+            <h1>Gioco dell'impiccato</h1>
+            <div id="immagine">
+                <img src="./immagini/HangMan_01.gif" alt="no image" id="img">
+            </div>
+            <br>
+            <div id="parola"></div>
+            <br><br>
+            <label for="lettera">Inserisci una lettera:</label>
+            <br>
+            <input type="text" id="lettera" maxlength="1">
+            <button onclick="riempiSpazi()">Submit</button>
+            <p>Tentativi rimasti: </p>
+            <div id="tentativiRimasti">10</div>
+            <br>
+            <button id="ricarica" onclick="reload()">Ricarica</button>
+        </div>
+    </body>
+</html>
